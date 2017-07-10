@@ -1,2 +1,17 @@
-<h1 class="app-header">Flowterie</h1>
-{{outlet}}
+<div class="container">
+  <div class="menu">
+    {{#link-to 'index'}}
+      <h1 class="app-header">
+        <em>Flowterie</em>
+      </h1>
+    {{/link-to}}
+    <div class="links">
+      {{#link-to 'new-flow'}}
+        Create
+      {{/link-to}}
+    </div>
+  </div>
+  <div class="body">
+    {{outlet}}
+  </div>
+</div>

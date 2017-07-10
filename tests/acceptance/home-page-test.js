@@ -9,6 +9,6 @@ test('visiting /', function(assert) {
   andThen(function() {
     assert.equal(currentURL(), '/');
     assert.equal(find('a[href="/new-flow"]').length, 1);
-    assert.equal(find('a[href="/new-flow"]').text().trim(), "Create New Flow");
+    assert.equal(find('a[href="/new-flow"]').text().trim(), "Create");
   });
 });
