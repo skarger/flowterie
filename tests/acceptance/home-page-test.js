@@ -13,3 +13,11 @@ test('visiting /', function(assert) {
     assert.equal(find('a.nav[href="/new-flow"]').text().trim(), "Create");
   });
 });
+
+test('listing flows on home page', function(assert) {
+  visit('/');
+
+  andThen(function() {
+    assert.equal(find('h2').text().trim(), "List of Flows");
+  });
+});
