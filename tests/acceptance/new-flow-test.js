@@ -16,6 +16,6 @@ test('/new-flow has a link back to the home page', function(assert) {
   visit('/new-flow');
 
   andThen(function() {
-    assert.equal(find('a[href="/"]').text().trim(), "Flowterie");
+    assert.equal(find('a.app-header[href="/"]').text().trim(), "Flowterie");
   });
 });

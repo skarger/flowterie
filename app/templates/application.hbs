@@ -1,14 +1,23 @@
 <div class="container">
   <div class="menu">
-    {{#link-to 'index'}}
+    {{#link-to 'index' class='app-header'}}
       <h1 class="app-header">
         <em>Flowterie</em>
       </h1>
     {{/link-to}}
     <div class="links">
-      {{#link-to 'new-flow'}}
+      <ul>
+      <li>
+      {{#link-to 'index' class='nav'}}
+        Home
+      {{/link-to}}
+      </li>
+      <li>
+      {{#link-to 'new-flow' class='nav'}}
         Create
       {{/link-to}}
+      </li>
+      </ul>
     </div>
   </div>
   <div class="body">
