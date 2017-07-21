@@ -19,3 +19,12 @@ test('/new-flow has a link back to the home page', function(assert) {
     assert.equal(find('a.app-header[href="/"]').text().trim(), "Flowterie");
   });
 });
+
+test('/new-flow has inputs for the flow template', function(assert) {
+  visit('/new-flow');
+
+  andThen(function() {
+    assert.equal(find('label[for="template_name"]').text().trim(), "Name:");
+    assert.equal(find('input#template_name').length, 1);
+  });
+});
