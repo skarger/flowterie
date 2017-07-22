@@ -12,6 +12,20 @@ export default function() {
   this.namespace = '/api/organizations';    // make this `/api`, for example, if your API is namespaced
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
 
+  this.get('flow_templates', function() {
+    return {
+      data: [{
+        id: 'abc123',
+        type: 'flow_templates',
+        template_name: 'Flow 1',
+      },
+      {
+        id: 'def456',
+        type: 'flow_templates',
+        template_name: 'Flow 2',
+      }]
+    };
+  });
   /*
     Shorthand cheatsheet:
 

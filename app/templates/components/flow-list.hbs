@@ -2,6 +2,6 @@
 
 <ul>
   {{#each flows as |flow|}}
-    <li class="flow-item" {{action "showFlow" flow}}>{{flow}}</li>
+    <li class="flow-item" {{action "showFlow" flow.templateName}}>{{flow.templateName}}</li>
   {{/each}}
 </ul>
