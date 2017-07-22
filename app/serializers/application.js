@@ -1,7 +1,8 @@
+import Ember from 'ember';
 import DS from 'ember-data';
 
 export default DS.JSONAPISerializer.extend({
-  normalizeResponse(store, primaryModelClass, payload, id, requestType) {
+  normalizeResponse(store, primaryModelClass, payload, id, requestType) { // eslint-disable-line no-unused-vars
     payload.data.forEach(function(obj) {
       obj.attributes = {};
       for(var key in obj) {
@@ -9,7 +10,7 @@ export default DS.JSONAPISerializer.extend({
           obj.attributes[key] = obj[key];
           delete obj[key];
         }
-      };
+      }
     });
 
     return this._super(...arguments);
