@@ -1,8 +1,8 @@
 import { moduleForModel, test } from 'ember-qunit';
 
-moduleForModel('flow-template', 'Unit | Model | flow template', {
+moduleForModel('organization', 'Unit | Model | organization', {
   // Specify the other units that are required for this test.
-  needs: ['model:organization']
+  needs: ['model:flowTemplate']
 });
 
 test('it exists', function(assert) {
