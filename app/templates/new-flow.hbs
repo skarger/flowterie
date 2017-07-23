@@ -5,4 +5,14 @@
   </div>
 
   {{flow-template-form}}
+
+  {{#flow-structure-entry
+      format=(action 'basicList')
+      as |tasks|}}
+      <ul>
+      {{#each tasks as |task|}}
+          <li>{{task}}</li>
+      {{/each}}
+      </ul>
+  {{/flow-structure-entry}}
 </div>
