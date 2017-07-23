@@ -1,25 +1,55 @@
 import { moduleForComponent, test } from 'ember-qunit';
 import hbs from 'htmlbars-inline-precompile';
+import wait from 'ember-test-helpers/wait';
+import RSVP from 'rsvp';
 
 moduleForComponent('flow-structure-entry', 'Integration | Component | flow structure entry', {
   integration: true
 });
 
-test('it renders', function(assert) {
+test('should initially show nothing', function(assert) {
+    this.on('basicList', (text) => {
+        if (text === '') {
+            return RSVP.resolve([]);
+        } else {
+            return RSVP.resolve(["task 1", "task 2"]);
+        }
+    });
 
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
-  this.render(hbs`{{flow-structure-entry}}`);
-
-  assert.equal(this.$().text().trim(), '');
-
-  // Template block usage:
-  this.render(hbs`
-    {{#flow-structure-entry}}
-      template block text
+    this.render(hbs`
+    {{#flow-structure-entry format=(action 'basicList') as |tasks|}}
+        {{#each tasks as |task|}}
+            <li class='task'>{{task}}</li>
+        {{/each}}
     {{/flow-structure-entry}}
-  `);
+    `);
 
-  assert.equal(this.$().text().trim(), 'template block text');
+    return wait().then(() => {
+        assert.equal(this.$('li.task').length, 0);
+    });
+});
+
+test('should show a list when text entered', function(assert) {
+    this.on('basicList', (text) => {
+        if (text === '') {
+            return RSVP.resolve([]);
+        } else {
+            return RSVP.resolve(["task 1", "task 2"]);
+        }
+    });
+
+    this.render(hbs`
+    {{#flow-structure-entry format=(action 'basicList') as |tasks|}}
+        {{#each tasks as |task|}}
+            <li class='task'>{{task}}</li>
+        {{/each}}
+    {{/flow-structure-entry}}
+    `);
+
+    this.$('.flow-structure-entry textarea').val("task 1'\ntask 2").keyup();
+
+    return wait().then(() => {
+        assert.equal(this.$('li.task').length, 2);
+        assert.equal(this.$('li.task').first().text().trim(), 'task 1');
+    });
 });
