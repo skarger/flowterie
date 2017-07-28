@@ -6,7 +6,7 @@ export default DS.JSONAPISerializer.extend({
     payload.data.forEach(function(obj) {
       obj.attributes = {};
       for(var key in obj) {
-        if (key !== "id" && key !== "type" && key !== "attributes") {
+        if (key !== "id" && key !== "type" && key !== "attributes" && key !== "relationships") {
           obj.attributes[key] = obj[key];
           delete obj[key];
         }

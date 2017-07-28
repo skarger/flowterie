@@ -9,23 +9,12 @@ export default function() {
   */
 
   this.urlPrefix = 'http://localhost:21012';    // make this `http://localhost:8080`, for example, if your API is on a different server
-  this.namespace = '/api/organizations';    // make this `/api`, for example, if your API is namespaced
+  this.namespace = '/api';    // make this `/api`, for example, if your API is namespaced
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
+  //
+  this.organization_id = 'a1';
+  this.prefix = 'organizations/' + this.organization_id;
 
-  this.get('flow_templates', function() {
-    return {
-      data: [{
-        id: 'abc123',
-        type: 'flow_templates',
-        template_name: 'Flow 1',
-      },
-      {
-        id: 'def456',
-        type: 'flow_templates',
-        template_name: 'Flow 2',
-      }]
-    };
-  });
   /*
     Shorthand cheatsheet:
 
@@ -37,4 +26,23 @@ export default function() {
 
     http://www.ember-cli-mirage.com/docs/v0.3.x/shorthands/
   */
+  this.get(this.prefix + '/flow_templates', function() {
+    return {
+      data: [{
+        id: 'abc123',
+        type: 'flow_templates',
+        template_name: 'Flow 1',
+      },
+      {
+        id: 'def456',
+        type: 'flow_templates',
+        template_name: 'Flow 2',
+      },
+      {
+        id: 'ghi789',
+        type: 'flow_templates',
+        template_name: 'Flow 3',
+      }]
+    };
+  });
 }

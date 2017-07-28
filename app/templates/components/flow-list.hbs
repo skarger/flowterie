@@ -1,7 +1,7 @@
 <h2>{{title}}</h2>
 
 <ul>
-  {{#each flows as |flow|}}
-    <li class="flow-item" {{action "showFlow" flow.templateName}}>{{flow.templateName}}</li>
+  {{#each flowTemplates as |flowTemplate|}}
+    <li class="flow-item" {{action "showFlow" flowTemplate.templateName}}>{{flowTemplate.templateName}}</li>
   {{/each}}
 </ul>
