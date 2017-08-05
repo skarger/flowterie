@@ -4,6 +4,8 @@ import moduleForAcceptance from 'flowterie/tests/helpers/module-for-acceptance';
 moduleForAcceptance('Acceptance | new flow');
 
 test('visiting /new-flow', function(assert) {
+  authenticate();
+
   visit('/new-flow');
 
   andThen(function() {
@@ -13,6 +15,8 @@ test('visiting /new-flow', function(assert) {
 });
 
 test('/new-flow has a link back to the home page', function(assert) {
+  authenticate();
+
   visit('/new-flow');
 
   andThen(function() {
@@ -21,6 +25,8 @@ test('/new-flow has a link back to the home page', function(assert) {
 });
 
 test('/new-flow has inputs for the flow template', function(assert) {
+  authenticate();
+
   visit('/new-flow');
 
   andThen(function() {
