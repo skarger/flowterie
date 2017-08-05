@@ -8,6 +8,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('new-flow');
+  this.route('login');
 });
 
 export default Router;

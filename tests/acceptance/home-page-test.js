@@ -3,6 +3,14 @@ import moduleForAcceptance from 'flowterie/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | home page');
 
+//test('visiting / without authentication', function(assert) {
+//  visit('/');
+//
+//  andThen(function() {
+//    assert.equal(currentURL(), '/login');
+//  });
+//});
+
 test('visiting /', function(assert) {
   visit('/');
 
