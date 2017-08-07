@@ -5,6 +5,7 @@ export default Ember.Component.extend({
 
   organiztionIdInput: "",
   apiTokenInput: "",
+  redirect: function() {},
 
   actions: {
     submitLogin() {
