@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('route:authenticated/new-flow', 'Unit | Route | new flow', {
+moduleFor('route:authenticated.new-flow', 'Unit | Route | new flow', {
   // Specify the other units that are required for this test.
   needs: ['service:identity']
 });

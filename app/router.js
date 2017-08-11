@@ -8,7 +8,7 @@ const Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('login');
-  this.route('authenticated', function() {
+  this.route('authenticated', { path: '/' }, function() {
     this.route('new-flow');
     this.route('view-flows');
   });

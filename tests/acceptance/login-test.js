@@ -14,7 +14,7 @@ test('visiting /login', function(assert) {
 });
 
 test('visiting another route, redirecting to /login, then redirecting back', function(assert) {
-  visit('/authenticated/new-flow');
+  visit('/new-flow');
   andThen(function() {
     assert.equal(currentURL(), '/login');
 
@@ -22,7 +22,7 @@ test('visiting another route, redirecting to /login, then redirecting back', fun
     fillIn('input#api-token', '007');
     click('button#login');
     andThen(function() {
-      assert.equal(currentURL(), '/authenticated/new-flow');
+      assert.equal(currentURL(), '/new-flow');
     });
   });
 });

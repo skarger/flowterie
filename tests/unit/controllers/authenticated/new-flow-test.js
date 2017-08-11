@@ -1,6 +1,6 @@
 import { moduleFor, test } from 'ember-qunit';
 
-moduleFor('controller:authenticated/new-flow', 'Unit | Controller | new flow', {
+moduleFor('controller:authenticated.new-flow', 'Unit | Controller | new flow', {
   // Specify the other units that are required for this test.
   // needs: ['controller:foo']
 });

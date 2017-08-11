@@ -10,7 +10,7 @@ export default Ember.Controller.extend({
         previousTransition.retry();
       } else {
         // Default back to homepage
-        this.transitionToRoute('index');
+        this.transitionToRoute('authenticated.index');
       }
     }
   }
