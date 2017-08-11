@@ -7,8 +7,11 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('new-flow');
   this.route('login');
+  this.route('authenticated', function() {
+    this.route('new-flow');
+    this.route('view-flows');
+  });
 });
 
 export default Router;

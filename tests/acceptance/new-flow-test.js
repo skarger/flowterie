@@ -3,31 +3,31 @@ import moduleForAcceptance from 'flowterie/tests/helpers/module-for-acceptance';
 
 moduleForAcceptance('Acceptance | new flow');
 
-test('visiting /new-flow', function(assert) {
+test('visiting /authenticated/new-flow', function(assert) {
   authenticate();
 
-  visit('/new-flow');
+  visit('/authenticated/new-flow');
 
   andThen(function() {
-    assert.equal(currentURL(), '/new-flow');
+    assert.equal(currentURL(), '/authenticated/new-flow');
     assert.equal(find('h2').text().trim(), "New Flow");
   });
 });
 
-test('/new-flow has a link back to the home page', function(assert) {
+test('/authenticated/new-flow has a link back to the home page', function(assert) {
   authenticate();
 
-  visit('/new-flow');
+  visit('/authenticated/new-flow');
 
   andThen(function() {
     assert.equal(find('a.app-header[href="/"]').text().trim(), "Flowterie");
   });
 });
 
-test('/new-flow has inputs for the flow template', function(assert) {
+test('/authenticated/new-flow has inputs for the flow template', function(assert) {
   authenticate();
 
-  visit('/new-flow');
+  visit('/authenticated/new-flow');
 
   andThen(function() {
     assert.equal(find('label[for="template_name"]').text().trim(), "Name:");

@@ -12,3 +12,17 @@ test('visiting /login', function(assert) {
     assert.equal(currentURL(), '/');
   });
 });
+
+test('visiting another route, redirecting to /login, then redirecting back', function(assert) {
+  visit('/authenticated/new-flow');
+  andThen(function() {
+    assert.equal(currentURL(), '/login');
+
+    fillIn('input#organization-id', 's-MI6');
+    fillIn('input#api-token', '007');
+    click('button#login');
+    andThen(function() {
+      assert.equal(currentURL(), '/authenticated/new-flow');
+    });
+  });
+});
