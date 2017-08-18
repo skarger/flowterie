@@ -11,6 +11,7 @@ Router.map(function() {
   this.route('authenticated', { path: '/' }, function() {
     this.route('new-flow');
     this.route('view-flows');
+    this.route('logout');
   });
 });
 

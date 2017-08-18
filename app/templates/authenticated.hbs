@@ -1,1 +1,24 @@
-{{outlet}}
+<div>
+  <div class="links">
+    <ul>
+    <li>
+    {{#link-to 'authenticated.index' class='nav'}}
+      Home
+    {{/link-to}}
+    </li>
+    <li>
+    {{#link-to 'authenticated.new-flow' class='nav'}}
+      Create
+    {{/link-to}}
+    </li>
+    <li>
+      {{#link-to 'authenticated.logout' class='nav logout'}}
+        Logout
+      {{/link-to}}
+    </li>
+    </ul>
+  </div>
+</div>
+<div class="body">
+  {{outlet}}
+</div>
