@@ -34,4 +34,6 @@ test('it sets credentials', function(assert) {
   });
 
   assert.equal(this.get('identity.present'), true);
+  assert.equal(this.get('identity.organizationId'), 'abc');
+  assert.equal(this.get('identity.apiToken'), 'def');
 });
