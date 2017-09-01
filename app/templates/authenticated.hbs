@@ -1,21 +1,28 @@
-<div>
+<div class="nav">
   <div class="links">
     <ul>
-    <li>
-    {{#link-to 'authenticated.index' class='nav'}}
-      Home
-    {{/link-to}}
-    </li>
-    <li>
-    {{#link-to 'authenticated.new-flow' class='nav'}}
-      Create
-    {{/link-to}}
-    </li>
-    <li>
-      {{#link-to 'authenticated.logout' class='nav logout'}}
-        Logout
+      <li>
+      {{#link-to 'authenticated.index' class='nav'}}
+        Home
       {{/link-to}}
-    </li>
+      </li>
+      <li>
+      {{#link-to 'authenticated.new-flow' class='nav'}}
+        Create
+      {{/link-to}}
+      </li>
+      <li>
+        {{#link-to 'authenticated.logout' class='nav logout'}}
+          Logout
+        {{/link-to}}
+      </li>
+      <li>
+        Identity
+      <ul class="identity">
+        <li id='organization-id'>Organization: {{ model.organizationId }}</li>
+        <li id='api-token'>API token: {{ model.apiToken }}</li>
+      </ul>
+      </li>
     </ul>
   </div>
 </div>

@@ -5,7 +5,9 @@ export default Ember.Route.extend({
 
   model() {
     return {
-      identified: this.get('identity').get('present')
+      identified: this.get('identity').get('present'),
+      apiToken: this.get('identity').get('apiToken'),
+      organizationId: this.get('identity').get('organizationId'),
     };
   },
 
