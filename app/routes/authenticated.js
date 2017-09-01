@@ -16,6 +16,13 @@ export default Ember.Route.extend({
       let loginController = this.controllerFor('login');
       loginController.set('previousTransition', transition);
       this.transitionTo('login');
+    } else {
+      this.get('store').pushPayload({
+        data: [{
+          id: this.get('identity').get('organizationId'),
+          type: 'organization',
+        }]
+      });
     }
   }
 });

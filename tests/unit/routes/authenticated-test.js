@@ -1,8 +1,9 @@
 import { moduleFor, test } from 'ember-qunit';
+import Ember from 'ember';
 
 moduleFor('route:authenticated', 'Unit | Route | authenticated', {
   // Specify the other units that are required for this test.
-  needs: ['service:identity', 'controller:login', 'route:login']
+  needs: ['service:identity', 'controller:login', 'route:login', 'model:organization']
 });
 
 test('it exists', function(assert) {
@@ -26,6 +27,16 @@ test('it determines identified from identity service', function(assert) {
   assert.equal(route.model()['identified'], true)
 });
 
+test('it creates an organization model', function(assert) {
+  let route = this.subject();
+  let identityService = route.get('identity');
+  identityService.set('organizationId', 'abc');
+  identityService.set('apiToken', 'def');
+  Ember.run(() => route.afterModel());
+  assert.ok(route.get('store').peekRecord('organization', 'abc'))
+  assert.equal(route.get('store').peekAll('organization').get('length'), 1);
+});
+
 test('does not redirect when identified', function(assert) {
   assert.expect(0);
 
@@ -37,7 +48,7 @@ test('does not redirect when identified', function(assert) {
   route.transitionTo = function() {
     assert.notOk();
   };
-  route.afterModel();
+  Ember.run(() => route.afterModel());
 });
 
 test('redirects when not identified', function(assert) {
