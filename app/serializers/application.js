@@ -5,6 +5,7 @@ export default DS.JSONAPISerializer.extend({
   normalizeResponse(store, primaryModelClass, payload, id, requestType) { // eslint-disable-line no-unused-vars
     payload.data.forEach(function(obj) {
       obj.attributes = {};
+      obj['type'] = 'flow_templates';
       for(var key in obj) {
         if (key !== "id" && key !== "type" && key !== "attributes" && key !== "relationships") {
           obj.attributes[key] = obj[key];

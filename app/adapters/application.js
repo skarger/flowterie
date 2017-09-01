@@ -7,11 +7,13 @@ export default DS.JSONAPIAdapter.extend({
   host: 'http://localhost:4200',
   headers: Ember.computed('identity.apiToken', function() {
     return {
-      'Authorization': 'Bearer ' + this.get('identity.apiToken')
+      'Authorization': 'Bearer ',
+      'X-SWAGGER-AUTH': 'Bearer ' + this.get('identity.apiToken')
     };
   }),
   pathForType: function(type) {
-    var prefix = 'orgs/' + this.get('identity').get('organizationId') + '/content_flow/';
+    //var prefix = 'orgs/' + this.get('identity').get('organizationId') + '/content_flow/';
+    var prefix = 'organizations/' + this.get('identity').get('organizationId') + '/';
     return prefix + Ember.String.underscore(type).pluralize();
   },
 });
