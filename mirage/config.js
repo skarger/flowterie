@@ -13,7 +13,8 @@ export default function() {
   // this.timing = 400;      // delay for each request, automatically set to 0 during testing
   //
   this.organization_id = 's-MI6';
-  this.prefix = 'orgs/' + this.organization_id + '/content_flow';
+    //this.prefix = 'orgs/' + this.organization_id + '/content_flow';
+  this.prefix = 'orgs/:org_id/content_flow';
 
   /*
     Shorthand cheatsheet:
