@@ -7,5 +7,6 @@ module.exports = {
     // `false` will make it read-only
     // `true` will allow the variable to be reassigned
     authenticate: false,
+    Viz: true,
   }
 };

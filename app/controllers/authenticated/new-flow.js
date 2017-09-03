@@ -15,6 +15,21 @@ export default Ember.Controller.extend({
                 }
             });
             return promise;
+        },
+        graphViz(text) {
+            let promise = new Ember.RSVP.Promise((resolve, reject) => {
+                if (typeof text == 'string') {
+                    if (text.trim() === "") {
+                        resolve('<div class="empty-flow-chart"></div>');
+                    } else {
+                        let result = Viz("digraph { x -> y -> z; }");
+                        resolve(result);
+                    }
+                } else {
+                    reject('given non-string value for text');
+                }
+            });
+            return promise;
         }
     }
 });
