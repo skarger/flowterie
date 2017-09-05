@@ -1,18 +1,16 @@
+<h2>New Flow</h2>
 <div>
-  <h2>New Flow</h2>
-  <div>
-    Design a new Content Flow.
-  </div>
+  Design a new Content Flow.
+</div>
 
+<div id="entry">
   {{flow-template-form}}
 
   {{#flow-structure-entry
-      format=(action 'basicList')
-      as |tasks|}}
-      <ul>
-      {{#each tasks as |task|}}
-          <li>{{task}}</li>
-      {{/each}}
-      </ul>
+      format=(action 'graphViz')
+      as |flow-chart|}}
+      <div id="flow-chart">
+          {{{flow-chart}}}
+      </div>
   {{/flow-structure-entry}}
 </div>
