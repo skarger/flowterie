@@ -22,7 +22,7 @@ export default Ember.Controller.extend({
                     if (text.trim() === "") {
                         resolve('<div class="empty-flow-chart"></div>');
                     } else {
-                        let result = Viz("digraph { x -> y -> z; }");
+                        let result = Viz(text);
                         resolve(result);
                     }
                 } else {
