@@ -8,5 +8,6 @@ module.exports = {
     // `true` will allow the variable to be reassigned
     authenticate: false,
     Viz: true,
+    FlowGrammar: true,
   }
 };

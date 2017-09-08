@@ -1,3 +1,3 @@
-export default function flowParser() {
-  return {};
+export default function flowParser(flowDefinition) {
+  return FlowGrammar.parse(flowDefinition);
 }

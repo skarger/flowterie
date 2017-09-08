@@ -12,7 +12,8 @@
   "scripts": {
     "build": "ember build",
     "start": "ember server",
-    "test": "ember test"
+    "test": "ember test",
+    "genparser": "pegjs --format globals --export-var FlowGrammar -o vendor/flow-grammar.js app/utils/flow-grammar.pegjs"
   },
   "devDependencies": {
     "broccoli-asset-rev": "^2.4.5",

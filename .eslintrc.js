@@ -2,6 +2,7 @@ module.exports = {
   globals: {
     server: true,
     Viz: true,
+    FlowGrammar: true,
   },
   root: true,
   parserOptions: {
