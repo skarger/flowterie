@@ -1,5 +1,18 @@
-Tasks
- = (TaskId / TaskLabel)*
+FlowStatementList
+ = (FlowStatement)*
+
+FlowStatement
+ = TaskDecl
+
+TaskDecl
+ = id:TaskId label:TaskLabel? {
+     label == null ? label = id : label = label;
+     return {
+      type: "task_decl",
+      id: id,
+      label: label
+     };
+   }
 
 TaskId
  = chars:TaskIdChars+ _ { return chars.join("") }
