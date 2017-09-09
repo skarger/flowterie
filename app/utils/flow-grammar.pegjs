@@ -5,14 +5,22 @@ FlowStatement
  = TaskDecl
 
 TaskDecl
- = id:TaskId label:TaskLabel? {
-     label == null ? label = id : label = label;
-     return {
+ = id:TaskId label:TaskLabel? start:Start? {
+     label === null ? label = id : label = label;
+     start !== null ? start = true : start = false;
+     var rv = {
       type: "task_decl",
       id: id,
       label: label
      };
+     if (start) {
+       rv['start'] = true;
+     }
+     return rv;
    }
+
+Start
+ = "start" _
 
 TaskId
  = chars:TaskIdChars+ _ { return chars.join("") }

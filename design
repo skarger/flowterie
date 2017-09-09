@@ -66,14 +66,14 @@ t1 and-then t2 then t3
 t1 -> t2 -> t3
 
 
-task_start
-  task_decl start
-
 task_label
   "\w"
 
 task_decl
   id [ task_label ]
+
+task_start
+  task_decl start
 
 task_decl_list
   task_decl [ task_decl_list ]

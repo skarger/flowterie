@@ -155,3 +155,16 @@ test('it parses a task id followed by a task label', function(assert) {
     errors: [],
   });
 });
+
+test('it parses a task marked as a start', function(assert) {
+  let result = flowParser('task start');
+  assert.deepEqual(result, {
+    flow: [{
+      type: 'task_decl',
+      id: 'task',
+      label: 'task',
+      start: true,
+    }],
+    errors: [],
+  });
+});
