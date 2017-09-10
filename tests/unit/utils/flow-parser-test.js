@@ -168,3 +168,26 @@ test('it parses a task marked as a start', function(assert) {
     errors: [],
   });
 });
+
+test('it parses a transition', function(assert) {
+  let result = flowParser('t1 -> t2');
+  assert.deepEqual(result, {
+    flow: [{
+      type: 'task_decl',
+      id: 't1',
+      label: 't1'
+    },
+    {
+      type: 'transition',
+      from: 't1',
+      to: 't2'
+    },
+    {
+      type: 'task_decl',
+      id: 't2',
+      label: 't2'
+    }
+    ],
+    errors: [],
+  });
+});
