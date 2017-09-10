@@ -1,12 +1,12 @@
 FlowStatementList
- = flow_stmts:(FlowStatement)* {
-    return flow_stmts.reduce(
+ = flowStmts:(FlowStatement)* {
+    return flowStmts.reduce(
       function(acc, cur) { return acc.concat(cur) }, []
     );
    }
 
 FlowStatement
- = Transition / task_decl:TaskDecl { return [task_decl]; }
+ = Transition / taskDecl:TaskDecl { return [taskDecl]; }
 
 Transition
  = from:TransitionStart to:TransitionTarget {
@@ -15,17 +15,23 @@ Transition
      {
       type: "transition",
       from: from.id,
-      to: to.id,
-     },
-     to
-   ];
+      to: to[0].id,
+     }
+   ].concat(to);
  }
 
 TransitionStart
  = from:TaskDecl { return from; }
 
 TransitionTarget
- = TransitionOp to:TaskDecl { return to; }
+ = TransitionOp to:TaskDecl andThenTo:TransitionTarget? {
+    var rv = [to];
+    if (andThenTo !== null) {
+      rv = rv.concat({ type: "transition", from: to.id, to: andThenTo[0].id });
+      rv = rv.concat(andThenTo);
+    }
+    return rv;
+   }
 
 TransitionOp
  = _ '->' _
