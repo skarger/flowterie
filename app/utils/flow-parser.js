@@ -4,7 +4,7 @@ export default function flowParser(flowDefinition) {
       errors: []
   };
   try {
-    result['flow'] = FlowGrammar.parse(flowDefinition);
+    result['flow'] = dedupe(FlowGrammar.parse(flowDefinition));
   }
   catch(e) {
       result['errors'] = [{
@@ -13,4 +13,30 @@ export default function flowParser(flowDefinition) {
       }];
   }
   return result;
+}
+
+function dedupe(parsedFlow) {
+  let dedupedFlow = [];
+  let taskIds = {};
+  let transitions = {};
+  parsedFlow.forEach(function(flowStatement) {
+    if (flowStatement.type === "transition") {
+      let transitionId = flowStatement.from + '->' + flowStatement.to;
+      if (transitionId in transitions) {
+        return;
+      } else {
+        transitions[transitionId] = true;
+      }
+    }
+    if (flowStatement.type === "task_decl") {
+      let taskId = flowStatement.id;
+      if (taskId in taskIds) {
+        return;
+      } else {
+        taskIds[taskId] = true;
+      }
+    }
+    dedupedFlow.push(flowStatement);
+  });
+  return dedupedFlow;
 }

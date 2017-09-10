@@ -224,3 +224,31 @@ test('it parses a sequence of transitions', function(assert) {
     errors: [],
   });
 });
+
+test('it de-dupes transitions', function(assert) {
+  let result = flowParser('t1 -> t2\nt3\nt1 -> t2');
+  assert.deepEqual(result, {
+    flow: [{
+      type: 'task_decl',
+      id: 't1',
+      label: 't1'
+    },
+    {
+      type: 'transition',
+      from: 't1',
+      to: 't2'
+    },
+    {
+      type: 'task_decl',
+      id: 't2',
+      label: 't2'
+    },
+    {
+      type: 'task_decl',
+      id: 't3',
+      label: 't3'
+    }
+    ],
+    errors: [],
+  });
+});
