@@ -31,9 +31,15 @@ function dedupe(parsedFlow) {
     if (flowStatement.type === "task_decl") {
       let taskId = flowStatement.id;
       if (taskId in taskIds) {
+        if (flowStatement.label !== taskId) {
+          taskIds[taskId].label = flowStatement.label;
+        }
+        if (flowStatement.start) {
+          taskIds[taskId].start = true;
+        }
         return;
       } else {
-        taskIds[taskId] = true;
+        taskIds[taskId] = flowStatement;
       }
     }
     dedupedFlow.push(flowStatement);

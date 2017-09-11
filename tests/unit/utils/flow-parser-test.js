@@ -252,3 +252,80 @@ test('it de-dupes transitions', function(assert) {
     errors: [],
   });
 });
+
+test('it merges task_decl start attribute', function(assert) {
+  let result = flowParser('t1 t1 start');
+  assert.deepEqual(result, {
+    flow: [{
+      type: 'task_decl',
+      id: 't1',
+      label: 't1',
+      start: true
+    }],
+    errors: [],
+  });
+});
+
+test('it merges task_decl label attribute', function(assert) {
+  let result = flowParser('t1 t1 "Task 1"');
+  assert.deepEqual(result, {
+    flow: [{
+      type: 'task_decl',
+      id: 't1',
+      label: 'Task 1'
+    }],
+    errors: [],
+  });
+});
+
+test('it does not overwrite custom label attribute to ID', function(assert) {
+  let result = flowParser('t1 "Task 1" t1');
+  assert.deepEqual(result, {
+    flow: [{
+      type: 'task_decl',
+      id: 't1',
+      label: 'Task 1'
+    }],
+    errors: [],
+  });
+});
+
+test('it merges task_decl attributes when declared in transitions', function(assert) {
+  let result = flowParser('t1 t2 t1 "Task 1" -> t2 "Task 2"' +
+                          't3 "Task 3" -> t4 t3 start');
+  assert.deepEqual(result, {
+    flow: [{
+      type: 'task_decl',
+      id: 't1',
+      label: 'Task 1'
+    },
+    {
+      type: 'task_decl',
+      id: 't2',
+      label: 'Task 2'
+    },
+    {
+      type: 'transition',
+      from: 't1',
+      to: 't2'
+    },
+    {
+      type: 'task_decl',
+      id: 't3',
+      label: 'Task 3',
+      start: true
+    },
+    {
+      type: 'transition',
+      from: 't3',
+      to: 't4'
+    },
+    {
+      type: 'task_decl',
+      id: 't4',
+      label: 't4'
+    },
+    ],
+    errors: [],
+  });
+});
