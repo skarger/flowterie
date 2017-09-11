@@ -17,7 +17,7 @@ test('it provides an error if parse fails', function(assert) {
         flow: [],
         errors: [{
           title: "Line 1: syntax error",
-          detail: "Expected [\\-_0-9A-Za-z:] or end of input but \"#\" found."
+          detail: "Expected [_0-9A-Za-z:] or end of input but \"#\" found."
         }]
     });
 });
@@ -34,7 +34,7 @@ test('it parses a basic task name', function(assert) {
   });
 });
 
-test('it parses a task ID with numbers, underscores, and hyphens', function(assert) {
+test('it parses a task ID with numbers', function(assert) {
   let result = flowParser('task1');
   assert.deepEqual(result, {
     flow: [{
@@ -43,6 +43,19 @@ test('it parses a task ID with numbers, underscores, and hyphens', function(asse
       label: 'task1',
     }],
     errors: [],
+  });
+});
+
+test('it does not allow a task ID to start with a hyphen', function(assert) {
+  let result = flowParser('-task1');
+  assert.deepEqual(result, {
+    flow: [],
+    errors: [
+      {
+        "detail": "Expected [_0-9A-Za-z:] or end of input but \"-\" found.",
+        "title": "Line 1: syntax error"
+      }
+    ],
   });
 });
 

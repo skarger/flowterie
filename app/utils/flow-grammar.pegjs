@@ -55,16 +55,21 @@ Start
  = "start" _
 
 TaskId
- = chars:TaskIdChars+ _ { return chars.join("") }
+ = startChar:TaskIdStartChars rest:TaskIdChars* _ {
+    return [startChar].concat(rest).join("")
+  }
 
 TaskLabel
   = '"'chars:TaskLabelChars+'"' _ { return chars.join(""); }
   / "'"chars:TaskLabelChars+"'" _ { return chars.join(""); }
 
-TaskIdChars
- = [-_0-9A-Za-z:]
+TaskIdStartChars
+ = [_0-9A-Za-z:]
 
- TaskLabelChars
+TaskIdChars
+ = TaskIdStartChars / '-'
+
+TaskLabelChars
  = TaskIdChars / ' '
 
 _ "whitespace"
