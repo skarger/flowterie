@@ -55,22 +55,19 @@ Start
  = "start" _
 
 TaskId
- = startChar:TaskIdStartChars rest:TaskIdChars* _ {
-    return [startChar].concat(rest).join("")
+ = chars:TaskIdChars+ _ {
+    return chars.join("")
   }
 
 TaskLabel
   = '"'chars:TaskLabelChars+'"' _ { return chars.join(""); }
   / "'"chars:TaskLabelChars+"'" _ { return chars.join(""); }
 
-TaskIdStartChars
+TaskIdChars
  = [_0-9A-Za-z:]
 
-TaskIdChars
- = TaskIdStartChars / '-'
-
 TaskLabelChars
- = TaskIdChars / ' '
+ = TaskIdChars / [- ]
 
 _ "whitespace"
   = [ \t\n\r]*
