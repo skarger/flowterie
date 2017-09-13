@@ -46,26 +46,26 @@ test('it parses a task ID with numbers', function(assert) {
   });
 });
 
-test('it does not allow a task ID to start with a hyphen', function(assert) {
-  let result = flowParser('-task1');
+test('it does not allow a task ID to have a hyphen', function(assert) {
+  let result = flowParser('task-1');
   assert.deepEqual(result, {
     flow: [],
     errors: [
       {
-        "detail": "Expected [_0-9A-Za-z:] or end of input but \"-\" found.",
+        "detail": "Expected \"'\", \"->\", \"\\\"\", \"start\", [_0-9A-Za-z:], or end of input but \"-\" found.",
         "title": "Line 1: syntax error"
       }
     ],
   });
 });
 
-test('it parses a task ID with underscores, hyphens', function(assert) {
-  let result = flowParser('dog-tested_cat-approved');
+test('it parses a task ID with underscores', function(assert) {
+  let result = flowParser('dog_tested_cat_approved');
   assert.deepEqual(result, {
     flow: [{
       type: 'task_decl',
-      id: 'dog-tested_cat-approved',
-      label: 'dog-tested_cat-approved',
+      id: 'dog_tested_cat_approved',
+      label: 'dog_tested_cat_approved',
     }],
     errors: [],
   });
@@ -132,7 +132,6 @@ test('it parses a quoted task label with spaces', function(assert) {
 test('it parses multiple task names', function(assert) {
   let result = flowParser('t0 "Task 0" task2 task3:profit tp "Peace"');
   assert.deepEqual(result, {
-    flow: ['Task 0', 'task2', 'task3:profit', 'Peace'],
     flow: [{
       type: 'task_decl',
       id: 't0',
