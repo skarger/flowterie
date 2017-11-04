@@ -20,10 +20,6 @@ test('it renders', function(assert) {
 });
 
 test('it sets credentials', function(assert) {
-
-  // Set any properties with this.set('myProperty', 'value');
-  // Handle any actions with this.on('myAction', function(val) { ... });
-
   this.inject.service('identity');
   this.render(hbs`{{login-input}}`);
 
@@ -36,4 +32,17 @@ test('it sets credentials', function(assert) {
   assert.equal(this.get('identity.present'), true);
   assert.equal(this.get('identity.organizationId'), 'abc');
   assert.equal(this.get('identity.apiToken'), 'def');
+});
+
+test('it sets loggedInUser', function(assert) {
+  this.inject.service('identity');
+  this.render(hbs`{{login-input}}`);
+
+  Ember.run(() => {
+    fillIn('input#organization-id', 'abc');
+    fillIn('input#api-token', 'def');
+    click('button#login');
+  });
+
+  assert.equal(this.get('identity.loggedInUser.name'), 'Thomas Cat');
 });
